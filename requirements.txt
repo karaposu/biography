@@ -1,0 +1,24 @@
+python-dotenv
+
+pdfplumber
+pandas
+openpyxl
+python-calamine
+xlrd
+pytest
+pyyaml
+tabulate
+pymupdf
+
+
+llama-index-core
+llama-parse
+llama-index-readers-file
+
+
+
+# brew install poppler
+
+
+# sudo apt-get update
+# sudo apt-get install poppler-utils
