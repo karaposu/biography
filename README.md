@@ -10,17 +10,7 @@ GitStory is a Python tool designed to extract and process git commit history fro
 - **Extensible**: Easily modify or extend to include additional commit metadata.
 - **No Branch Complexity**: Assumes all commits are merged into the main branch, simplifying the commit history.
 
-## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Basic Usage](#basic-usage)
-  - [Customizing Processing Functions](#customizing-processing-functions)
-- [Configuration](#configuration)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Installation
 
@@ -83,7 +73,7 @@ This will generate a `commits.json` file containing the extracted commit data wi
 
 To integrate your custom processing logic (e.g., LLM summarizer), modify the `process_changes` function in `gitstory.py`:
 
-```python
+```
 def process_changes(commit_hash, changed_files):
     change_summaries = []
     for file in changed_files:
@@ -112,7 +102,7 @@ python gitstory.py
 
 ### Integrating an LLM Summarizer
 
-```python
+```
 def process_changes(commit_hash, changed_files):
     change_summaries = []
     for file in changed_files:
@@ -127,17 +117,17 @@ def process_changes(commit_hash, changed_files):
 
 After running the script with your custom processing, `commits.json` might look like:
 
-```json
+```
 [
-  {
+  
     "date": "2023-10-01 12:34:56 +0000",
     "message": "Initial commit",
     "change_summary": "Set up project structure and added initial files.",
     "aim": "Establish the foundation for the project.",
     "mistakes": "Forgot to include .gitignore.",
     "project_context": "Starting the GitStory project to track commit histories."
-  },
-  ...
+  
+  
 ]
 ```
 
