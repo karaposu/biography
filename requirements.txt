@@ -1,19 +1,7 @@
 python-dotenv
 
-pdfplumber
 pandas
-openpyxl
-python-calamine
-xlrd
-pytest
-pyyaml
-tabulate
-pymupdf
-
-
-llama-index-core
-llama-parse
-llama-index-readers-file
+llmservice
 
 
 

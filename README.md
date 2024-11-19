@@ -1,6 +1,15 @@
-# GitStory
+# Biography
 
-GitStory is a Python tool designed to extract and process git commit history from a repository. It generates a structured summary of commits, allowing for custom processing of changes using functions like LLM summarizers. This facilitates deeper insights into the development process by capturing not just what changed, but also the intent, mistakes, and context behind each commit.
+Biography is a Python tool designed for following purposes
+       - Extract and convert `git diff` results into meaningful project evolution summaries (with LLMs) for whole codebase
+       - Keep track of early and late version of each file to analyze  "mistakes" while storing  "commit_goal"
+       - Facilitates deeper insights into the development process by capturing not just what changed, but also the intent, mistakes, and context behind each commit.
+       - compile and then export project evolution  into visualizable json format
+
+and it has these extra features 
+       - Ability to regenerate commit messages from beginnging to until the end of project 
+     
+
 
 ## Features
 
@@ -14,27 +23,9 @@ GitStory is a Python tool designed to extract and process git commit history fro
 
 ## Installation
 
-1. **Clone the Repository**
-
    ```
-   git clone https://github.com/yourusername/gitstory.git
+   pip install biography
    ```
-
-2. **Navigate to the Directory**
-
-   ```
-   cd gitstory
-   ```
-
-3. **Install Dependencies**
-
-   GitStory uses Python's standard library modules, but if your custom processing functions require additional packages, install them using:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   *Note: Ensure you have Python 3.6 or higher installed.*
 
 ## Usage
 
@@ -43,130 +34,56 @@ GitStory is a Python tool designed to extract and process git commit history fro
 Run the script in the root directory of the git repository you want to analyze:
 
 ```bash
-python gitstory.py
+python make_biography.py
 ```
 
-This will generate a `commits.json` file containing the extracted commit data with the following structure:
+This will generate a timelime.yaml file containing the extracted commit data with the following structure:
 
-```json
-[
-  {
-    "date": "2023-10-01 12:34:56 +0000",
+project_description
+major_change_1 (major changes contains multiple commit changes summarized together. )
+     "date": "2023-10-01 12:34:56 +0000",
     "message": "Initial commit",
     "change_summary": "Changes in README.md",
     "aim": "",
     "mistakes": "",
     "project_context": ""
-  },
-  {
-    "date": "2023-10-02 14:20:10 +0000",
-    "message": "Added new feature",
-    "change_summary": "Changes in feature.py",
-    "aim": "",
-    "mistakes": "",
-    "project_context": ""
-  }
-]
+major_change_2
+major_change_3
+
+(i am not sure how this part should be structured)
 ```
 
-### Customizing Processing Functions
-
-To integrate your custom processing logic (e.g., LLM summarizer), modify the `process_changes` function in `gitstory.py`:
-
-```
-def process_changes(commit_hash, changed_files):
-    change_summaries = []
-    for file in changed_files:
-        diff = get_diff_for_file(commit_hash, file)
-        # Integrate your custom function here
-        summary = your_custom_function(diff)
-        change_summaries.append(summary)
-    return ' '.join(change_summaries)
 ```
 
-Replace `your_custom_function` with your actual processing function.
+*Biography helps you narrate the evolution of your codebase by enriching commit history with meaningful summaries and insights.*
 
-## Configuration
 
-- **Custom Functions**: Replace placeholders with your own logic for processing diffs.
-- **Output Format**: Modify the commit dictionary structure in `gitstory.py` to include additional fields if needed.
-- **Data Storage**: By default, the output is saved to `commits.json`. Change the filename or storage mechanism as desired.
+Strengths:
 
-## Examples
+Enhanced Commit Understanding: By extracting and converting git diff results into meaningful summaries using Large Language Models (LLMs), the tool goes beyond traditional version control logs. It captures the intent, mistakes, and context behind each commit, which is invaluable for understanding the development journey.
 
-### Running with Default Settings
+Structured Data Output: Generating outputs in visualizable JSON or YAML formats makes it easier to integrate with other tools or create custom visualizations. This can help teams to visualize the project's evolution over time effectively.
 
-```bash
-python gitstory.py
-```
+Regeneration of Commit Messages: The ability to regenerate commit messages can standardize the commit history and make it more informative, which is beneficial for both current team members and future contributors.
 
-### Integrating an LLM Summarizer
+Error and Goal Tracking: Keeping track of early and late versions of each file to analyze mistakes while storing commit_goal can help in identifying common pitfalls and improving coding practices.
 
-```
-def process_changes(commit_hash, changed_files):
-    change_summaries = []
-    for file in changed_files:
-        diff = get_diff_for_file(commit_hash, file)
-        # Example integration with an LLM summarizer
-        summary = llm_summarizer.summarize(diff)
-        change_summaries.append(summary)
-    return ' '.join(change_summaries)
-```
+Potential Applications:
 
-### Sample Output
+Project Retrospectives: Teams can use the insights provided to conduct more meaningful retrospectives, focusing on what went well and what could be improved.
 
-After running the script with your custom processing, `commits.json` might look like:
+Onboarding New Members: New team members can get up to speed faster by reviewing the summarized project evolution, understanding the rationale behind decisions.
 
-```
-[
-  
-    "date": "2023-10-01 12:34:56 +0000",
-    "message": "Initial commit",
-    "change_summary": "Set up project structure and added initial files.",
-    "aim": "Establish the foundation for the project.",
-    "mistakes": "Forgot to include .gitignore.",
-    "project_context": "Starting the GitStory project to track commit histories."
-  
-  
-]
-```
+Educational Purposes: Can be used as a teaching tool to show the development process of a project, highlighting challenges and how they were overcome.
 
-## Contributing
+Future features planned:
 
-Contributions are welcome! Please follow these steps:
+Clarify Output Structure: The description of the output structure is a bit unclear. Providing a concrete example of the generated timelime.yaml (perhaps with a small sample project) would help users understand what to expect.
 
-1. **Fork the Repository**
-2. **Create a Feature Branch**
+Branch Handling: Since the tool assumes all commits are merged into the main branch, it might miss out on the complexities introduced by feature branches and parallel development. Supporting multiple branches could provide a more comprehensive view.
 
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+Integration with Visualization Tools: Offering built-in support or guidance for visualizing the JSON/YAML data can enhance the user experience, making it easier to derive insights without additional effort.
 
-3. **Commit Your Changes**
+Performance Optimization: For large repositories with extensive histories, performance might become an issue. Providing options to limit the scope (e.g., date ranges, specific files) or optimizing the data processing could be beneficial.
 
-   ```bash
-   git commit -m "Description of your feature"
-   ```
-
-4. **Push to Your Fork**
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. **Open a Pull Request**
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or support, please open an issue on the [GitHub repository](https://github.com/yourusername/gitstory) or contact the maintainer:
-
-- **Email**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
-
----
-
-*GitStory helps you narrate the evolution of your codebase by enriching commit history with meaningful summaries and insights.*
+Expand Documentation: Including more detailed installation steps, usage examples, and potential pitfalls can make it more accessible to a wider audience.
