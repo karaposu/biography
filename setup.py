@@ -4,7 +4,7 @@ import subprocess
 import os
 
 setup(
-    name='gitstory',  # Package name
+    name='biography',  # Package name
     version='0.0.0',  # Version of your package
     author='Enes Kuzucu',  # Your name
 
