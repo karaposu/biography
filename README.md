@@ -16,13 +16,13 @@ GitStory is a Python tool designed to extract and process git commit history fro
 
 1. **Clone the Repository**
 
-   ```bash
+   ```
    git clone https://github.com/yourusername/gitstory.git
    ```
 
 2. **Navigate to the Directory**
 
-   ```bash
+   ```
    cd gitstory
    ```
 
