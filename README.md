@@ -87,3 +87,86 @@ Integration with Visualization Tools: Offering built-in support or guidance for 
 Performance Optimization: For large repositories with extensive histories, performance might become an issue. Providing options to limit the scope (e.g., date ranges, specific files) or optimizing the data processing could be beneficial.
 
 Expand Documentation: Including more detailed installation steps, usage examples, and potential pitfalls can make it more accessible to a wider audience.
+
+
+
+
+--
+## LLM based operations
+### **1. Summarize a File Change**  
+- **Why:** A fundamental feature to provide concise explanations of what changed in a file during a commit.  
+- **Importance:** Core to understanding individual changes and building other summaries.  
+
+---
+
+### **2. Generate Accurate Commit Messages**  
+- **Why:** Aggregates file change summaries to create meaningful commit messages that are consistent and clear.  
+- **Importance:** Ensures a well-documented Git history, crucial for collaboration and maintenance.  
+
+---
+
+### **3. Summarize a File**  
+- **Why:** Provides high-level overviews of files, useful for onboarding or understanding the purpose and structure of a codebase.  
+- **Importance:** Valuable for larger or frequently modified files to help developers quickly grasp their contents.
+
+---
+
+### **4. Summarize a File Change with Context of the Whole Project**  
+- **Why:** Adds depth to summaries by considering how the changes align with the project's goals or existing functionality.  
+- **Importance:** Critical for avoiding siloed understanding of changes.  
+
+---
+
+### **5. Cluster File Changes into Major Changes and Milestones**  
+- **Why:** Groups related changes into higher-level milestones, simplifying navigation and providing a broader view of development progress.  
+- **Importance:** Essential for project retrospectives and release planning.  
+
+---
+
+### **6. Generate Release Notes**  
+- **Why:** Aggregates changes from commits to create comprehensive release notes for stakeholders.  
+- **Importance:** Directly impacts user communication and product documentation.  
+
+---
+
+### **7. Identify and Summarize Refactoring Efforts**  
+- **Why:** Highlights improvements in code quality or structure without changing functionality.  
+- **Importance:** Promotes clean code practices and tracks technical debt reduction.  
+
+---
+
+### **8. Detect and Summarize Bug Fixes**  
+- **Why:** Identifies commits resolving bugs and explains the root cause and resolution.  
+- **Importance:** Aids in debugging similar issues and improves transparency in issue resolution.  
+
+---
+
+### **9. Summarize Pull Requests or Merge Requests**  
+- **Why:** Provides an overview of multi-commit efforts, including decisions made during reviews.  
+- **Importance:** Facilitates better collaboration and historical understanding of significant changes.  
+
+---
+
+### **10. Extract and Summarize Security Vulnerabilities**  
+- **Why:** Identifies and summarizes fixes addressing security concerns.  
+- **Importance:** Crucial for compliance, audits, and maintaining a secure codebase.  
+
+---
+
+### **Rationale for Ranking**:
+
+- **Core Operations (1–4):** Focus on fundamental insights about file changes and commits, forming the backbone of the tool.  
+- **Project-Level Summaries (5–7):** Build on foundational features to provide higher-level insights, enhancing team communication.  
+- **Specific Use Cases (8–10):** Address more targeted needs, such as bug fixes, reviews, or security.  
+
+This prioritization ensures you start with features that deliver the most immediate value while laying the groundwork for more specialized functionalities.
+
+
+
+
+
+
+# we need file class and in this class we need methods which will help us represent the whole file in different type of details
+# like generic summary where each class and method's code is explained in nlp
+# pseudo_summary is where each method is explained using pseudo 
+# aim summary is  where each method is explained in terms of aim

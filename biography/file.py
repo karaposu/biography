@@ -1,9 +1,15 @@
+
+import subprocess
+
 class File:
     def __init__(self, file_path, repo_path='.'):
         self.file_path = file_path
         self.repo_path = repo_path
         self.changes = []  # List of FileChange objects
         self.current_content = self.get_current_content()
+        self.generic_summary_text = ''
+        self.pseudo_summary_text = ''
+        self.aim_summary_text = ''
 
     def add_change(self, file_change):
         self.changes.append(file_change)
@@ -36,6 +42,24 @@ class File:
         for change in self.changes:
             authors.add(change.commit.author_name)
         return authors
+
+    def generate_generic_summary(self, llm_processor):
+        """Generate a natural language summary of the file."""
+        prompt = f"Provide a detailed summary of the following code:\n{self.current_content}"
+        self.generic_summary_text = llm_processor.generate_summary(prompt)
+        return self.generic_summary_text
+
+    def generate_pseudo_summary(self, llm_processor):
+        """Generate a pseudocode explanation of each method in the file."""
+        prompt = f"Convert the following code into pseudocode, explaining each method:\n{self.current_content}"
+        self.pseudo_summary_text = llm_processor.generate_summary(prompt)
+        return self.pseudo_summary_text
+
+    def generate_aim_summary(self, llm_processor):
+        """Explain each method in terms of its aim or purpose."""
+        prompt = f"Explain the purpose of each class and method in the following code:\n{self.current_content}"
+        self.aim_summary_text = llm_processor.generate_summary(prompt)
+        return self.aim_summary_text
 
 
 
